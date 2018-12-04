@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.signin.mapper.AddzyMapper">
+	
+	<select id="finDictionaryByid" parameterType="com.signin.pojo.Dictionary" resultType="com.signin.pojo.Dictionary">
+		select * from dictionary WHERE dictionary_id=#{dictionary_id} and dictionary_corresponding=#{dictionary_corresponding}
+	</select>
+	
+	<select id="finDictionaryByidf" parameterType="int" resultType="com.signin.pojo.Dictionary">
+		SELECT dictionary_id,dictionary_class from dictionary WHERE dictionary_corresponding=#{id}
+	</select>
+	
+	<select id="finDictionaryByyq" parameterType="int" resultType="com.signin.pojo.Dictionary">
+		SELECT * from dictionary where dictionary_corresponding=#{id}
+	</select>
+	
+	<select id="finSqlStudentByzq" parameterType="int" resultType="com.signin.pojo.StudentInquire">
+		select a.student_id students_id,a.student_name students_name,a.student_school students_school,b.dictionary_class students_class from sqlstudent a left join dictionary b on a.student_class = b.dictionary_id
+		where student_corresponding=#{id}
+		
+	</select>
+	
+	<select id="finSqlStudentByneiron"  parameterType="int" resultType="com.signin.pojo.StudentInquire">
+		select students_id,students_name,students_school,students_class,students_Sign from student where students_corresponding=#{id}
+	</select>
+	
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.signin.mapper.DictionaryMapper">
+	<insert id="finDictionaryByclass" parameterType="com.signin.pojo.Dictionary">
+		INSERT INTO dictionary
+		(dictionary_id,dictionary_class,dictionary_corresponding)
+		values (0,#{dictionary_class},#{dictionary_corresponding})
+	</insert>
+	<delete id="finDictionaryByiddelete" parameterType="com.signin.pojo.Dictionary">
+		DELETE FROM dictionary WHERE dictionary_id=#{dictionary_id} and dictionary_corresponding=#{dictionary_corresponding}
+	</delete>
+	
+	<insert id="finStudentByadd" parameterType="com.signin.pojo.SqlStudent">
+		INSERT INTO sqlstudent
+		(student_id,student_name,student_school,student_class,student_corresponding,student_creationtime)
+		values (0,#{student_name},#{student_school},#{student_class},#{student_corresponding},NOW())
+	</insert>
+	<insert id="finStudentByadds" parameterType="com.signin.pojo.StudentInquire">
+		INSERT INTO student
+		(students_id,students_name,students_school,students_class,students_corresponding,students_Sign)
+		values (0,#{students_name},#{students_school},#{students_class},#{students_corresponding},0)
+	</insert>
+	
+	<delete id="finSqlstudentByiddelete" parameterType="com.signin.pojo.SqlStudent">
+		DELETE FROM sqlstudent WHERE student_id=#{student_id} and student_corresponding=${student_corresponding}
+	</delete>
+	<update id="finSqlstudentByidupdate" parameterType="com.signin.pojo.SqlStudent">
+		UPDATE sqlstudent SET student_name=#{student_name},student_school=#{student_school},student_class=#{student_class} where student_id=#{student_id} and student_corresponding=#{student_corresponding}
+	</update>
+	
+	<delete id="finStudentInquiredeleteByid" parameterType="com.signin.pojo.StudentInquire">
+	DELETE FROM student where students_id=#{students_id} and students_corresponding=#{students_corresponding}
+	</delete>
+	
+	<update id="finStudentInquireUpdateByid" parameterType="com.signin.pojo.StudentInquire">
+	update student set students_Sign=students_Sign+1 where students_corresponding=#{students_corresponding} and students_school=#{students_school}
+	</update>
+</mapper>

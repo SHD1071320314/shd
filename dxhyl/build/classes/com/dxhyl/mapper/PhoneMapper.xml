@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxhyl.mapper.PhoneMapper">
+
+	<select id="findPhoneByUrl" resultType="com.dxhyl.pojo.BasePhone">
+		select phone_enable,phone_url FROM base_phone where phone_enable=1
+	</select>
+
+	<select id="findPhoneGuanli" resultType="com.dxhyl.pojo.BasePhone">
+		select phone_enable,phone_url,phone_id FROM base_phone
+	</select>
+
+	<update id="findPhoneByUpdate" parameterType="com.dxhyl.pojo.BasePhone">
+		update base_phone 
+			set phone_enable = case phone_id
+				<foreach collection="list" item="item" >
+					when #{item.phone_id} then #{item.phone_enable}
+				</foreach>
+			end
+		<where>
+			phone_id in 
+				<foreach collection="list" item="item" open="(" close=")" separator=",">
+					#{item.phone_id}
+				</foreach>
+		</where>
+	</update>
+</mapper>

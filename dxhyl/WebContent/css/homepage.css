@@ -1,0 +1,147 @@
+body{
+	margin:0px;
+	padding:0px;
+	width:1700px;
+	height:100%;
+}
+.whole{
+	width:100%;
+	height:100%;
+}
+.whole_2{
+	width:100%;
+	height:232px;
+	text-align:center;
+	line-height:center;
+}
+.whole_2 h1{
+	position:absolute;
+	font-size:80px;
+	font-family:粗体;
+	left:780px;
+	text-shadow: 10px -5px 15px #4B0082;
+}
+.whole_1{
+	margin:0px 0px 0px 0px ;
+	width:100%;
+	height:466px;
+}
+.whole_1_1{
+	margin:0px 0px 0px 10px;
+	float:left;
+	width:270px;
+	height:466px;
+	background:#A9A9A9;
+}
+.whole_1_2{
+	margin:0px 0px 0px 250px;
+}
+.whole_1_Shadow{
+	width:270px;
+	height:466px;
+	background:#000000;
+	position:absolute;
+	left:10px;
+	top:232px;
+	opacity:0.7;
+	text-align:center;
+	color:#ffffff;
+}
+.whole_1_Shadow p{
+	margin:200px 0px;
+	font-size:30px;
+}
+.click{
+	display:none;
+	position:absolute;
+	background:#000000;
+	width:1903px;
+	left:0px;
+	top:0px;
+	
+}
+.click_1{
+	position:fixed;
+	left:1730px;
+	top:50px;
+}
+.click_2{
+	display:none;
+	width:1903px;
+	height:100%;
+	position:absolute;
+	background:#ffffff;
+	left:0px;
+	top:0px;
+}
+.click_2_1{
+	width:100%;
+	display:none;
+}
+.click_2_1_login{
+	width:1903px;
+}
+.lonin_form{
+	width:1600px;
+	padding:0px;
+	float:left;
+	border:10px ridge #DEB887;
+}
+.roll_form{
+	width:1600px;
+	float:left;
+	border:10px ridge #DEB887;
+	padding:0px;
+}
+
+
+.lonin_form h3{
+	margin:10px 0px 0px 750px;
+	text-shadow: -2px -2px 1px #F5DEB3;
+}
+.phone_form h3{
+	margin:10px 0px 0px 750px;
+	text-shadow: -2px -2px 1px #F5DEB3;
+}
+.lonin_confirm{
+	float:left;
+	margin:0px 8px;
+}
+.lonin_SchoolView{
+	width:548px;
+	height:308px;
+	float:left;
+	margin:0px 8px;
+}
+.phone_form{
+	float:left;
+	width:1600px;
+	margin:20px 0px;
+	border:10px ridge #DEB887;
+}
+.lonin_phone{
+	margin:0px 0px 0px 30px;
+}
+
+.lonin_phone{
+	float:left;
+}
+
+
+.click_2_2{
+	width:100%;
+	display:none;
+}
+.click_2_3{
+	width:100%;
+	display:none;
+}
+.click_2_4{
+	width:100%;
+	display:none;
+}
+.click_2_5{
+	width:100%;
+	display:none;
+}
+

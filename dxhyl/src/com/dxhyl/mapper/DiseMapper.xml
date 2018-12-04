@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxhyl.mapper.DiseMapper">
+
+	<select id="findDictByemali" parameterType="string" resultType="com.dxhyl.pojo.BaseDIct">
+		select dict_email from base_dict WHERE dict_email=#{email}
+	</select>
+	
+	<insert id="finDictByInsert" parameterType="com.dxhyl.pojo.BaseDIct">
+		INSERT INTO base_dict 
+		(dict_id,dict_name,dict_email,dict_password,dict_enable,dict_creationtime)
+		values (
+		0,
+		<if test="dict_name !=null and dict_name !=''">
+		#{dict_name},
+		</if>
+		<if test="dict_email !=null and dict_email !=''">
+		#{dict_email},
+		</if>
+		<if test="dict_password !=null and dict_password !=''">
+		#{dict_password},
+		</if>
+		"1",NOW())
+	</insert>
+	
+	<select id="finDictByCode" parameterType="com.dxhyl.pojo.AccountCode" resultType="com.dxhyl.pojo.AccountCode">
+		select dict_name,dict_enable,dict_email from base_dict where dict_email=#{dict_email} and dict_password=#{dict_password}
+	</select>
+</mapper>

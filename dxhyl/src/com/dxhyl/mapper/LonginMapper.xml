@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxhyl.mapper.LonginMapper">
+
+	<select id="findLonginByUrl" resultType="com.dxhyl.pojo.BaseLongin">
+		select longin_enable,longin_url FROM base_longin where longin_enable=1
+	</select>
+
+	<select id="findLonginByGuanli" resultType="com.dxhyl.pojo.BaseLongin">
+		select longin_enable,longin_url,longin_id FROM base_longin
+	</select>
+	
+	<update id="findLonginByUpdate" parameterType="com.dxhyl.pojo.BaseLongin">
+		update base_longin 
+			set longin_enable = case longin_id
+				<foreach collection="list" item="item" >
+					when #{item.longin_id} then #{item.longin_enable}
+				</foreach>
+			end
+		<where>
+			longin_id in 
+				<foreach collection="list" item="item" open="(" close=")" separator=",">
+					#{item.longin_id}
+				</foreach>
+		</where>
+	</update>
+</mapper>
+

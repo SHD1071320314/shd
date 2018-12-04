@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxhyl.mapper.ComputerMapper">
+
+	<select id="findComputerByUrl" resultType="com.dxhyl.pojo.BaseComputer">
+		select computer_enable,computer_url FROM base_computer where computer_enable=1
+	</select>
+	
+	<select id="findComputerByGuanli" resultType="com.dxhyl.pojo.BaseComputer">
+		select computer_enable,computer_url,computer_id FROM base_computer
+	</select>
+
+	<update id="findComputerByUpdate" parameterType="com.dxhyl.pojo.BaseComputer">
+		update base_computer 
+			set computer_enable = case computer_id
+				<foreach collection="list" item="item" >
+					when #{item.computer_id} then #{item.computer_enable}
+				</foreach>
+			end
+		<where>
+			computer_id in 
+				<foreach collection="list" item="item" open="(" close=")" separator=",">
+					#{item.computer_id}
+				</foreach>
+		</where>
+	</update>
+
+</mapper>

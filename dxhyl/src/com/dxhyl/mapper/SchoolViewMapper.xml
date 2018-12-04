@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxhyl.mapper.SchoolViewMapper">
+	<insert id="finSchoolViewBy" parameterType="String">
+		INSERT INTO base_schoolview
+		(schoolview_id,schoolview_url,schoolview_enable,schoolview_creationtime)
+		values (0,#{url},0,NOW())
+	</insert>
+	
+	<select id="finSchoolViewBySv" resultType="com.dxhyl.pojo.BaseSchoolView">
+		select schoolview_url FROM base_schoolview where schoolview_enable=1
+	</select>
+	
+	<select id="finSchoolViewByguanli" resultType="com.dxhyl.pojo.BaseSchoolView">
+		select schoolview_enable,schoolview_url,schoolview_id FROM base_schoolview
+	</select>
+	
+	<update id="finSchoolViewByss" parameterType="com.dxhyl.pojo.BaseSchoolView">
+		update base_schoolview 
+			set schoolview_enable = case schoolview_id
+				<foreach collection="list" item="item" >
+					when #{item.schoolview_id} then #{item.schoolview_enable}
+				</foreach>
+			end
+		<where>
+			schoolview_id in 
+				<foreach collection="list" item="item" open="(" close=")" separator=",">
+					#{item.schoolview_id}
+				</foreach>
+		</where>
+	</update>
+</mapper>

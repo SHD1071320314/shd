@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxhyl.mapper.PhonefileMapper">
+	<insert id="finPhonefileByUrl" parameterType="String">
+		INSERT INTO base_phone
+		(phone_id,phone_url,phone_enable,phone_creationtime)
+		values (0,#{url},0,NOW())
+	</insert>
+</mapper>

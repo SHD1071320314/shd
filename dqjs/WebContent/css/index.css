@@ -1,0 +1,27 @@
+body{
+	margin:0px;
+	padding:0px;
+    background: -webkit-linear-gradient(#F0FFFF, #fff); 
+    background: -o-linear-gradient(#F0FFFF, #fff); 
+    background: -moz-linear-gradient(#F0FFFF, #fff); 
+    background: linear-gradient(#F0FFFF, #fff); 
+}
+.index{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+}
+.mainframe{
+	width:70%;
+	height:100%;
+	margin:0 auto;
+}
+.rotation{
+height:100%;
+width:100%;
+}
+.content{
+height:100%;
+width:100%;
+}
+	

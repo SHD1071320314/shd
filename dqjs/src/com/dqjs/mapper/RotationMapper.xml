@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dqjs.mapper.RotationMapper">
+<select id="findselectrotationByq" resultType="com.dqjs.pojo.Rotation">
+	select rotation_url from rotation where rotation_enable=1
+</select>
+<select id="findselectproductByq" resultType="com.dqjs.pojo.Product">
+	SELECT a.product_id,a.product_url,b.productname_name product_name from product a 
+left join productname b on a.product_id=b.productname_correspond
+</select>
+<select id="findselectproductidByid" parameterType="int" resultType="String">
+select productid_url from productid where productid_correspond=#{id}
+</select>
+<select id="findselectproductidBytaobao" parameterType="int" resultType="com.dqjs.pojo.Mapkeyid">
+select producttaobao_url product_taobao,producttaobao_id product_correspond from producttaobao where producttaobao_correspond=#{id}
+</select>
+
+<!-- map实验 -->
+<select id="findselectproductidBymap" parameterType="int" resultType="com.dqjs.pojo.Producttable">
+SELECT producttable_id,producttable_table from producttable where producttable_correspond=#{id}
+</select>
+<select id="findselectproducttextByid" parameterType="int" resultType="com.dqjs.pojo.Producttext">
+SELECT producttext_name,producttext_parameter from producttext where producttext_correspond=#{id}
+</select>
+
+
+
+<insert id="findinsertByproduct" parameterType="String">
+	INSERT INTO product (product_id,product_url,product_enable)
+	value (0,#{str},1)
+</insert>
+<insert id="findinsertbyproductid" parameterType="com.dqjs.pojo.Productid">
+	INSERT INTO productid (productid_id,productid_url,productid_correspond)
+	value (0,#{productid_url},#{productid_correspond})
+</insert>
+
+  <insert id="findinsertByidproduct" useGeneratedKeys="true" keyProperty="producttable_id" parameterType="com.dqjs.pojo.Producttable">
+INSERT INTO producttable (producttable_id,producttable_table,producttable_correspond)
+value (0,#{producttable_table},#{producttable_correspond})
+</insert>
+<insert id="findinsertByproducttext" parameterType="com.dqjs.pojo.Producttext">
+	INSERT INTO producttext(producttext_id,producttext_name,producttext_parameter,producttext_correspond)
+	value
+	<foreach collection="list"  item="item" index="index" separator=",">
+	(0,#{item.producttext_name},#{item.producttext_parameter},#{item.producttext_correspond})
+	</foreach>
+</insert>
+
+<select id="findselectproductidByq" resultType="com.dqjs.pojo.Mapkeyid">
+SELECT product_id, product_url from product
+</select>
+
+<select id="findproductdeletebyid" parameterType="int" resultType="String">
+select product_url from product where product_id=#{id}
+</select>
+
+<delete id="findeleteproduct" parameterType="int">
+	DELETE FROM product where product_id=#{id}
+</delete>
+<select id="findeleteproductidid" parameterType="int" resultType="String">
+	select productid_url from productid where productid_correspond=#{id}
+</select>
+<delete id="findeleteproductid" parameterType="int">
+DELETE FROM productid where productid_correspond=#{id}
+</delete>
+<select id="findselectproducttable" parameterType="int" resultType="Integer">
+	select producttable_id from producttable where producttable_correspond=#{id}
+</select>
+<delete id="finddelectproducttext" parameterType="int" >
+DELETE FROM producttext where producttext_correspond=#{id}
+</delete>
+<delete id="finddeleteproducttable" parameterType="int">
+DELETE FROM producttable where producttable_correspond=#{id}
+</delete>
+<delete id="finddeleteproducttaobaos" parameterType="int">
+DELETE FROM producttaobao where producttaobao_correspond=#{id}
+</delete>
+<delete id="finddeleteproductname" parameterType="int">
+DELETE FROM productname where productname_correspond=#{id}
+</delete>
+
+<insert id="finddeleteproducttaobao" parameterType="com.dqjs.pojo.Mapkeyid">
+	INSERT INTO producttaobao (producttaobao_id,producttaobao_url,producttaobao_correspond)
+	value (#{product_correspond},#{product_taobao},#{product_id}) 
+	ON DUPLICATE KEY
+	UPDATE producttaobao_url=#{product_taobao},producttaobao_correspond=#{product_id}
+</insert>
+<select id="selectproducttaobao" parameterType="int" resultType="String">
+	select producttaobao_url from producttaobao where producttaobao_correspond=#{id}
+</select>
+
+<insert id="findcanpingname" parameterType="com.dqjs.pojo.Mapkeyid">
+	INSERT INTO productname (productname_id,productname_name,productname_correspond)
+	value (#{product_correspondname},#{product_name},#{product_id})
+	ON DUPLICATE KEY
+	UPDATE productname_name=#{product_name},productname_correspond=#{product_id}
+</insert>
+
+<select id="findProductidlistname" parameterType="int" resultType="com.dqjs.pojo.Mapkeyid">
+select productname_id product_correspondname,productname_name product_name from productname where productname_correspond=#{id}
+</select>
+</mapper>
